@@ -37,7 +37,7 @@ class KakuroController extends React.Component {
         };
     }
 
-    /**
+    /** 
      * @description Determine additional information regarding the given cell
      * @param {Number} x
      * @param {Number} y
@@ -99,7 +99,7 @@ class KakuroController extends React.Component {
                     focusCell={this.state.focusCell}
                     updateCellValue={this.updateCellValue.bind(this)}
                 />
-                <input type="button" value="Check Solution" onClick={this.validateSolution.bind(this)}/>
+                {/* <input type="button" value="Check Solution" onClick={this.validateSolution.bind(this)} /> */}
             </div>
         );
     }

@@ -176,3 +176,74 @@
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
 }
+
+
+/* App.css */
+
+.app-container {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .app-header h1 {
+    color: #93ddff; /* A friendly blue */
+    margin-bottom: 0.5em;
+  }
+  
+  .app-header p {
+    color: #333;
+    margin-top: 0;
+    font-size: 1.1em;
+  }
+  
+  /* Style for link buttons */
+  .btn-link {
+    display: inline-block;
+    background-image: linear-gradient(120deg, #a5e7f2 0%, #578056 100%);
+    color: white;
+    padding: 10px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  }
+  
+  .btn-link:hover, .btn-link:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+ /* App.css */
+.app-container {
+    text-align: center;
+}
+
+.app-header {
+    background-color: #333;
+    padding: 20px 0;
+}
+
+.nav-button {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    
+}
+
+.nav-button:hover {
+    text-transform: 2px;
+}
+
+.navbar {
+    margin-top: 20px;
+}
+
+  /* Content styling */
+  .content {
+    margin-top: 20px;
+  }
+  
