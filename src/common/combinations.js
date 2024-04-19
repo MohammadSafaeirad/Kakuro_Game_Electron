@@ -1,8 +1,4 @@
-/**
- * Copyright 2012 Akseli Pal�n.
- * Created 2012-07-15.
- * Licensed under the MIT license.
- */
+
 function k_combinations(set, k) {
     var i, j, combs, head, tailcombs;
     if (k > set.length || k <= 0) {

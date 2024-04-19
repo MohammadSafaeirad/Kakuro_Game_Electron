@@ -1,0 +1,40 @@
+/* Instructions.css */
+.instructions-container {
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    color: #4A4A4A;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #F0F8FF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    max-height: 500px; 
+    overflow-y: auto; 
+}
+
+.instructions-container h2 {
+    color: #FF69B4;
+    font-size: 28px;
+    text-align: center;
+}
+
+.instructions-container h3 {
+    color: #64a80a;
+    font-size: 24px;
+}
+
+.instructions-container p, .instructions-container li {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.instructions-container ul {
+    list-style-type: none;
+}
+
+.instructions-container li::before {
+    content: '🌟 ';
+}
+
+.instructions-container li ul li::before {
+    content: '⭐️ ';
+}

@@ -1,0 +1,37 @@
+/* StartPage.css */
+
+.btn-link {
+    display: inline-block;
+    background-color: #F0F8FF;
+    color: #64a80a;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-link:hover {
+    background-color: #64a80a;
+    color: #ffffff;
+}
+
+/* Additional styling for your navbar */
+.nav-button {
+    text-decoration: none;
+    color: #4A4A4A;
+    padding: 5px 15px;
+    margin: 0 10px;
+    border-radius: 10px;
+    background-color: #F0F8FF;
+    transition: background-color 0.3s, color 0.3s;
+    border-color: #4A4A4A;
+    border-width: 1em;
+}
+
+.nav-button:hover {
+    background-color: #64a80a;
+    color: white;
+}

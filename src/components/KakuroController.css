@@ -1,6 +1,30 @@
-/* Kakero page */
+/* Adjust the positioning of the Go Back button */
+.go-back-button {
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    color: #FFFFFF; /* White text */
+    background-color: #FF69B4; /* Pink background */
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px; /* Reduced padding for a smaller button */
+    font-size: 16px; /* Adjusted font size */
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    position: absolute; /* Positioning the button */
+    top: 100px; /* Distance from the top */
+    left: 50px; /* Distance from the left */
+    z-index: 10; /* Ensure it's above other elements */
+}
+
+.go-back-button:hover {
+    background-color: #FF82B4; /* Lighter pink on hover */
+}
+
+/* Adjust the kakuro-controller class to accommodate the button's positioning */
 .kakuro .kakuro-controller {
     max-width: calc(100% - 80px);
     max-height: 85vh;
     overflow: scroll;
+    position: relative; /* Establishes a positioning context for the absolute button */
+    padding-top: 50px; /* Add padding to the top to avoid overlapping with the button */
 }

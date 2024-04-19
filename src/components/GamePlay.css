@@ -1,0 +1,45 @@
+.gameplay-container {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    color: #4A4A4A;
+    background-color: #F0F8FF;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px auto; /* Center the container */
+    width: 80%; /* Adjust based on preference */
+    max-width: 600px; /* Adjust based on preference */
+}
+
+.gameplay-container h2 {
+    color: #FF69B4;
+    margin-bottom: 20px;
+}
+
+.gameplay-container p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.levels-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.levels-container button {
+    background-color: #FF69B4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.levels-container button:hover {
+    background-color: #FFB6C1;
+    transform: translateY(-2px);
+}

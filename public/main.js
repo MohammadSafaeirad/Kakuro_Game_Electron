@@ -2,7 +2,7 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
 function createWindow() {
-    // Create the browser window.
+    // Create the browser window using specific properties such as size, max, min dimensions, icons and web preferences 
     const win = new BrowserWindow({
         title: 'tracker',
         frame: true,
@@ -37,8 +37,10 @@ function createWindow() {
     );
 
     // Open the DevTools.
-    win.webContents.openDevTools()
+    //win.webContents.openDevTools()
 }
+
+//setting up event listeners 
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
