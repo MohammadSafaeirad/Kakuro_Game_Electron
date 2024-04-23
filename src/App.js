@@ -134,8 +134,63 @@
 
 // export default App;
 // App.js
-import React from 'react';
+
+
+//*************************************************************************************** */
+// import React from 'react';
+// import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+// import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import './App.css';
+
+// // Import your components
+// import StartPage from './components/StartPage';
+// import Login from './components/Login';
+// import Register from './components/Register';
+// import KakuroController from './components/KakuroController';
+// import Instructions from './components/Instructions';
+// import GamePlay from './components/GamePlay'; // Ensure this component is implemented
+// import MainGame from './MainGame'; // Ensure this component is implemented
+
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <ToastContainer />
+//       <div className="app-container">
+//         <header className="app-header">
+//           <Link id='home-nav' className="nav-button" to="/">Home</Link>
+//           <div className='account'>
+//             <Link className="nav-button" to="/login">Login</Link>
+//             <Link className="nav-button" to="/register">Register</Link>
+//             <Link className="nav-button" to="/game">Play as Guest</Link>
+//             <Link className="nav-button" to="/instructions">Instructions</Link>
+//           </div>
+//         </header>
+//         <h1>Kakuro Puzzle Game!</h1>
+//         <p>Play, learn, and challenge your mind!</p>
+//         <div className="content">
+//           <Routes>
+//             <Route path="/" element={<StartPage />} />
+//             <Route path="/login" element={<Login />} />
+//             <Route path="/register" element={<Register />} />
+//             <Route path="/game" element={<MainGame />} />
+//             <Route path="/instructions" element={<Instructions />} />
+//             <Route path="/gameplay" element={<GamePlay />} />
+//             {/* Specific route for handling puzzles by seed */}
+//             <Route path="/puzzle/:puzzleSeed" element={<KakuroController />} />
+//           </Routes>
+//         </div>
+//       </div>
+//     </BrowserRouter>
+//   );
+// }
+
+// export default App;
+
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 // Import your components
@@ -148,14 +203,50 @@ import GamePlay from './components/GamePlay'; // Ensure this component is implem
 import MainGame from './MainGame'; // Ensure this component is implemented
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State variable for login status
+  const [userEmail, setUserEmail] = useState('');
+
+  useEffect(() => {
+    // Check if user is already logged in on component mount
+    const userEmailFromStorage = localStorage.getItem('userEmail');
+    if (userEmailFromStorage) {
+      setIsLoggedIn(true);
+      setUserEmail(userEmailFromStorage);
+    }
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
+
+  const handleLogin = (email) => {
+    // Update state and local storage after successful login
+    setIsLoggedIn(true);
+    setUserEmail(email);
+    localStorage.setItem('userEmail', email);
+  };
+
+  const handleLogout = () => {
+    // Clear state and local storage on logout
+    setIsLoggedIn(false);
+    setUserEmail('');
+    localStorage.removeItem('userEmail');
+  };
+
   return (
     <BrowserRouter>
+      <ToastContainer />
       <div className="app-container">
         <header className="app-header">
           <Link id='home-nav' className="nav-button" to="/">Home</Link>
           <div className='account'>
-            <Link className="nav-button" to="/login">Login</Link>
-            <Link className="nav-button" to="/register">Register</Link>
+            {isLoggedIn ? (
+              <>
+                <span>Welcome, {userEmail}!</span>
+                <button onClick={handleLogout}>Logout</button>
+              </>
+            ) : (
+              <>
+                <Link className="nav-button" to="/login">Login</Link>
+                <Link className="nav-button" to="/register">Register</Link>
+              </>
+            )}
             <Link className="nav-button" to="/game">Play as Guest</Link>
             <Link className="nav-button" to="/instructions">Instructions</Link>
           </div>
@@ -165,13 +256,15 @@ function App() {
         <div className="content">
           <Routes>
             <Route path="/" element={<StartPage />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login onLogin={handleLogin} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/game" element={<MainGame />} />
             <Route path="/instructions" element={<Instructions />} />
             <Route path="/gameplay" element={<GamePlay />} />
+            <Route path="/app" element={<App />} />
             {/* Specific route for handling puzzles by seed */}
-            <Route path="/puzzle/:puzzleSeed" element={<KakuroController />} />
+            <Route path="/puzzle/:puzzleSeed" element={<KakuroController />}
+            />
           </Routes>
         </div>
       </div>
@@ -180,3 +273,4 @@ function App() {
 }
 
 export default App;
+

@@ -7,6 +7,7 @@ import PresetGrid from '../models/grids/presetGrid.js';
 import './KakuroController.css';
 import GridCache from '../models/gridCache.js';
 import Kakuro from '../models/kakuro/kakuro.js';
+import { toast } from 'react-toastify';
 
 
 const defaultPuzzle = 'basic1';
@@ -29,8 +30,12 @@ class KakuroController extends React.Component {
     updateCellValue = (x, y, value) => {
         // Simplified cell update logic. Adjust as needed.
         const newCells = this.state.cells.slice();
-        if (newCells[y] && newCells[y][x]) {
+        console.log({ x, y, value, newCells, old: newCells?.[y]?.[x] })
+
+        if (newCells[y] && typeof newCells?.[y]?.[x] === 'string') {
+            // alert('Cell is already filled');
             newCells[y][x] = value;
+            console.log({ newCells })
             this.setState({ cells: newCells });
         }
     }
@@ -58,9 +63,13 @@ class KakuroController extends React.Component {
         const kakuro = new Kakuro(this.state.cells);
         const { invalidDownSums, invalidRightSums } = kakuro.validateSolution();
         if (invalidDownSums.length === 0 && invalidRightSums.length === 0) {
-            alert('The solution is valid');
+            // alert('The solution is valid');
+            console.log('The solution is valid');
+            toast.success('The solution is valid');
         } else {
-            alert('The solution is invalid');
+            // alert('The solution is invalid');
+            console.log('The solution is invalid');
+            toast.error('The solution is invalid');
         }
     }
 

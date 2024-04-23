@@ -20,6 +20,8 @@ const Login = () => {
             if (response.ok) {
                 console.log('Login successful', data);
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('userEmail', email);
+                console.log('User email stored:', email);
                 setMessage('Login successful!');
                 navigate('/gameplay'); // Redirecting to GamePlay page
             } else {
