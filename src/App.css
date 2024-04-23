@@ -14,6 +14,7 @@
 
     margin-bottom: 12.5px;
 }
+
 .directory div {
     flex: 1;
     position: relative;
@@ -25,6 +26,7 @@
 
     cursor: pointer;
 }
+
 .directory div a {
     position: absolute;
     top: 0;
@@ -43,6 +45,7 @@
 .directory #home {
     background-color: black;
 }
+
 .directory #home a {
     color: white;
 }
@@ -50,6 +53,7 @@
 .directory #basic1 {
     background-color: #89CFF0;
 }
+
 .directory #basic2 {
     background-color: #6CB4EE;
 }
@@ -57,9 +61,11 @@
 .directory #random4 {
     background-color: #3FFF00;
 }
+
 .directory #random8 {
     background-color: #FFFF00;
 }
+
 .directory #random16 {
     background-color: #FF7F50;
 }
@@ -80,9 +86,11 @@
 
     transition: all 0.5s ease-in-out;
 }
+
 .generated-grids:hover {
     right: 0;
 }
+
 .generated-grids .title {
     margin: 4px;
     font-size: 1.25em;
@@ -110,14 +118,17 @@
     font-size: 1.125em;
     cursor: pointer;
 }
+
 .generated-grids span {
     margin-right: auto;
     margin-left: 5px;
 }
+
 .generated-grids .subtitle-arrow {
     margin-top: auto;
     margin-bottom: auto;
 }
+
 .generated-grids .arrow {
     max-width: 0;
     max-height: 0;
@@ -137,6 +148,7 @@
         transform: translateY(0);
     }
 }
+
 .generated-grids .seed {
     z-index: 2;
 
@@ -148,9 +160,11 @@
 
     animation: slide-down 0.5s ease-in-out;
 }
+
 .generated-grids .seed:nth-child(2n+1) {
     background-color: #dcd0ff;
 }
+
 .generated-grids .seed a {
     display: block;
     width: 100%;
@@ -168,10 +182,12 @@
     display: inline-block;
     padding: 3px;
 }
+
 .arrow.right {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
 }
+
 .arrow.down {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
@@ -182,13 +198,14 @@
 .app-container {
     text-align: center;
     font-family: 'Arial', sans-serif;
-    background-image: url('/src/components/backrou.jpg'); /* Background image */
+    background-image: url('/src/components/backrou.jpg');
+    /* Background image */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
     width: 100vw;
-   
+
 }
 
 .app-header h1 {
@@ -207,15 +224,17 @@
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.content h1, .content p {
-    color: #FFF; 
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); 
+.content h1,
+.content p {
+    color: #FFF;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 
-.nav-button, .go-back-button {
+.nav-button,
+.go-back-button {
     font-family: 'Comic Sans MS', 'Arial', sans-serif;
-    font-size: 1rem; 
+    font-size: 1rem;
 }
 
 .app-header {
@@ -253,14 +272,47 @@
     font-family: 'Comic Sans MS', 'Arial', sans-serif;
 }
 
-.app-container > h1 {
-    color: rgb(223, 32, 112); 
+.app-container>h1 {
+    color: rgb(223, 32, 112);
     font-family: 'Comic Sans MS', 'Arial', sans-serif;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.app-container > p {
+.app-container>p {
     color: #4A4A4A;
     font-family: 'Arial', sans-serif;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* App.css */
+
+/* Styles for the logout button */
+.account button {
+    background-color: #FF69B4;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+    border: none;
+    /* Remove default button border */
+    cursor: pointer;
+    /* Add cursor pointer */
+}
+
+.account button:hover {
+    background-color: #FFB6C1;
+    transform: translateY(-2px);
+}
+
+/* Styles for the user email */
+.account span.user-email {
+    color: #4A4A4A;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    margin-right: 10px;
+    /* Add margin to separate from logout button */
 }

@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate(); // Adding useNavigate hook
 
-    const handleSubmit = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const response = await fetch('http://localhost:3001/login', {
@@ -23,7 +23,8 @@ const Login = () => {
                 localStorage.setItem('userEmail', email);
                 console.log('User email stored:', email);
                 setMessage('Login successful!');
-                navigate('/gameplay'); // Redirecting to GamePlay page
+                onLogin(email); // Notify parent component about successful login
+                navigate('/'); // Redirecting to start game page
             } else {
                 console.error('Login failed:', data.message);
                 setMessage(data.message || 'Failed to login');
@@ -37,7 +38,7 @@ const Login = () => {
     return (
         <div className="login-container">
             <h2>Login</h2>
-            <form onSubmit={handleSubmit} className="login-form">
+            <form onSubmit={handleLogin} className="login-form">
                 <label>Email:</label>
                 <input
                     type="email"

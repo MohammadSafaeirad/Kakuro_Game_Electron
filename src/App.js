@@ -239,7 +239,7 @@ function App() {
             {isLoggedIn ? (
               <>
                 <span>Welcome, {userEmail}!</span>
-                <button onClick={handleLogout}>Logout</button>
+                <button className="nav-button" onClick={handleLogout}>Logout</button>
               </>
             ) : (
               <>
@@ -261,7 +261,6 @@ function App() {
             <Route path="/game" element={<MainGame />} />
             <Route path="/instructions" element={<Instructions />} />
             <Route path="/gameplay" element={<GamePlay />} />
-            <Route path="/app" element={<App />} />
             {/* Specific route for handling puzzles by seed */}
             <Route path="/puzzle/:puzzleSeed" element={<KakuroController />}
             />
@@ -273,4 +272,5 @@ function App() {
 }
 
 export default App;
+
 
