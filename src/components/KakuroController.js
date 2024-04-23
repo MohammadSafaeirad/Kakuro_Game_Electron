@@ -10,6 +10,7 @@ import Kakuro from '../models/kakuro/kakuro.js';
 import { toast } from 'react-toastify';
 
 
+
 const defaultPuzzle = 'basic1';
 const presetPuzzles = [defaultPuzzle, 'basic2'];
 
@@ -21,6 +22,13 @@ class KakuroController extends React.Component {
             focusCell: { columnData: null, rowData: null }, // Default value
         };
     }
+
+    generateHints = () => {
+        const generatedGrid = new GeneratedGrid(); // Create an instance of GeneratedGrid
+        const cellsWithHints = generatedGrid.generateHints(this.state.cells); // Generate hints for the current cells
+        this.setState({ cells: cellsWithHints }); // Update the state with cells containing hints
+    }
+
 
     setFocusCell = (x, y) => {
         // Simplified focus cell logic. Adjust according to your actual implementation.
@@ -46,8 +54,8 @@ class KakuroController extends React.Component {
                 <div className="kakuro-controller">
                     <GridComponent
                         cells={this.state.cells}
-                        setFocusCell={this.setFocusCell}
-                        updateCellValue={this.updateCellValue}
+                        setFocusCell={this.setFocusCell.bind(this)}
+                        updateCellValue={this.updateCellValue.bind(this)}
                     />
                     {this.state.focusCell && <CellDetails focusCell={this.state.focusCell} />}
                 </div>
@@ -87,21 +95,12 @@ class KakuroController extends React.Component {
                     focusCell={this.state.focusCell}
                     updateCellValue={this.updateCellValue.bind(this)}
                 />
-                {<input type="button" value="Check Solution" onClick={this.validateSolution.bind(this)} />}
+                <input type="button" value="Check Solution" onClick={this.validateSolution.bind(this)} />
             </div>
         );
     }
 }
 
-// function fetchGridData(seed) {
-//     if (presetPuzzles.includes(seed)) {
-//         const presetGrid = new PresetGrid(seed); // Ensure PresetGrid handles this correctly
-//         return presetGrid.getCells();
-//     } else {
-//         const generatedGrid = new GeneratedGrid(); // Adjust as necessary for your GeneratedGrid
-//         return generatedGrid.getCells(seed); // Assuming it can handle dynamic seeds
-//     }
-// }
 
 function fetchGridData(seed) {
     const cache = new GridCache(localStorage); // Create a new cache

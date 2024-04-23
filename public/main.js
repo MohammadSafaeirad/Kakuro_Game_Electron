@@ -8,13 +8,13 @@ function createWindow() {
         frame: true,
         icon: path.join(__dirname, '..', 'build', 'icon.png'),
 
-        width: 800,
-        height: 600,
+        width: 1024,
+        height: 1024,
 
-        maxWidth: 900,
-        maxHeight: 700,
-        minWidth: 700,
-        minHeight: 500,
+        maxWidth: 1024,
+        maxHeight: 1024,
+        minWidth: 1024,
+        minHeight: 1024,
 
         backgroundColor: "white",
         webPreferences: {

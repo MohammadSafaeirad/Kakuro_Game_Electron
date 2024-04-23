@@ -96,7 +96,7 @@ class CellDetails extends React.Component {
         const normalized_scores = scores.map((s) => s / max_score);
         return (
             <div className="cellDetails">
-                {/* <span className="title">Cell Details</span>
+                <span className="title">Cell Details</span>
                 <div className="attributes">
                     <span> x = {x}</span>
                     <span> y = {y}</span>
@@ -123,7 +123,7 @@ class CellDetails extends React.Component {
                             );
                         })
                     }
-                </div> */}
+                </div>
             </div>
         );
     }

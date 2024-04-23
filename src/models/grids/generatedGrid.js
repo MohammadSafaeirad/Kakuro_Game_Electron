@@ -61,7 +61,7 @@ class GeneratedGrid extends Grid {
         this.generateSolution();
         this.generateHints();
         this.solution = deepCopy(this.cells);
-        //console.log(this.solution);
+        console.log(this.solution);
 
         this.emptyBlankCells();
         return this.cells;
