@@ -44,19 +44,14 @@ class CellDetails extends React.Component {
      *   }
      * }
      */
-
-    // eslint-disable-next-line
     constructor(props) {
         super(props);
     }
 
     computeSuggestions() {
         const { value } = this.props;
-        // eslint-disable-next-line
         const { columnData, rowData } = this.props.focusCell;
-        // eslint-disable-next-line
         const columnDigits = columnData && columnData.digits || [];
-        // eslint-disable-next-line
         const rowDigits = rowData && rowData.digits || [];
         const occupiedDigits = [].concat(columnDigits, rowDigits);
 
@@ -71,13 +66,11 @@ class CellDetails extends React.Component {
         }
 
         // Determine which digits should ideally be used for the column/row
-        // eslint-disable-next-line
-        const columnSum = columnData && columnData.sum || [];
+        const columnSum = columnData && columnData.sum || 0;
         this.columnSuggestions = getKDigitCombinations(columnDigits.length)
             .filter((c) => digitSum(c) === columnSum);
 
-        // eslint-disable-next-line
-        const rowSum = rowData && rowData.sum || [];
+        const rowSum = rowData && rowData.sum || 0;
         this.rowSuggestions = getKDigitCombinations(rowDigits.length)
             .filter((c) => digitSum(c) === rowSum);
     }
@@ -105,6 +98,8 @@ class CellDetails extends React.Component {
                 <div className="options">
                     {
                         pool.map((digit, idx) => {
+                            // console.log(digit, scores[idx], normalized_scores[idx]);
+                            // console.log(pool, scores, normalized_scores);
                             const score = normalized_scores[idx];
                             // With normalized scores, have higher scoring digits use a greener hue
                             const r = 218 - Math.floor(score * 155);

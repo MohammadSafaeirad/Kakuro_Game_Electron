@@ -24,7 +24,7 @@ const Login = ({ onLogin }) => {
                 console.log('User email stored:', email);
                 setMessage('Login successful!');
                 onLogin(email); // Notify parent component about successful login
-                navigate('/'); // Redirecting to start game page
+                navigate('/game'); // Redirecting to start game page
             } else {
                 console.error('Login failed:', data.message);
                 setMessage(data.message || 'Failed to login');

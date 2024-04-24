@@ -9,6 +9,8 @@ import GridCache from '../models/gridCache.js';
 import Kakuro from '../models/kakuro/kakuro.js';
 import { toast } from 'react-toastify';
 
+import Grid from '../models/grids/grid.js';
+
 
 
 const defaultPuzzle = 'basic1';
@@ -18,34 +20,66 @@ class KakuroController extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cells: props.cells || [],
-            focusCell: { columnData: null, rowData: null }, // Default value
+            cells: props.cells,
+            focusCell: {
+                x: 0,
+                y: 0,
+                value: 0,
+                columnData: { sum: 0, digits: [] },
+                rowData: { sum: 0, digits: [] },
+            },
+            elapsedTime: 0,
+            //interval: null,
+
+
         };
+
     }
 
-    generateHints = () => {
-        const generatedGrid = new GeneratedGrid(); // Create an instance of GeneratedGrid
-        const cellsWithHints = generatedGrid.generateHints(this.state.cells); // Generate hints for the current cells
-        this.setState({ cells: cellsWithHints }); // Update the state with cells containing hints
+    componentDidMount() {
+        this.intervalRef = setInterval(() => {
+            this.setState({ elapsedTime: this.state.elapsedTime + 1 });
+        }, 1000);
+
     }
 
-
-    setFocusCell = (x, y) => {
-        // Simplified focus cell logic. Adjust according to your actual implementation.
-        this.setState({ focusCell: { x, y } });
+    componentWillUnmount() {
+        clearInterval(this.intervalRef);
     }
 
-    updateCellValue = (x, y, value) => {
-        // Simplified cell update logic. Adjust as needed.
-        const newCells = this.state.cells.slice();
-        console.log({ x, y, value, newCells, old: newCells?.[y]?.[x] })
+    /**
+     * @description Determine additional information regarding the given cell
+     * @param {Number} x
+     * @param {Number} y
+     */
+    setFocusCell(x, y) {
+        const kakuro = new Kakuro(this.state.cells);
+        const columnData = kakuro.retrieveColumnSumData(x, y);
+        const rowData = kakuro.retrieveRowSumData(x, y);
+        this.setState({
+            focusCell: {
+                x: x,
+                y: y,
+                value: this.state.cells[y][x],
+                columnData: columnData,
+                rowData: rowData
+            }
+        });
+    }
 
-        if (newCells[y] && typeof newCells?.[y]?.[x] === 'string') {
-            // alert('Cell is already filled');
-            newCells[y][x] = value;
-            console.log({ newCells })
-            this.setState({ cells: newCells });
+    /**
+     * @description Assign a value to a blank-cell
+     * @param {Number} x
+     * @param {Number} y
+     * @param {Number} value
+     */
+    updateCellValue(x, y, value) {
+        if (Grid.isFilledCell(this.state.cells[y][x])) {
+            console.warn(`Cannot modify filled cell at x=${x}, y=${y}`);
+            return;
         }
+        this.state.cells[y][x] = value;
+        this.setState({ cells: this.state.cells });
     }
 
     render() {
@@ -64,27 +98,41 @@ class KakuroController extends React.Component {
         );
     }
 
+
+
     /**
      * @description Check that all sums in the grid are valid
      */
     validateSolution() {
+
+        //this.state.interval && clearInterval(this.state.interval);
+
+        if (this.intervalRef) {
+            clearInterval(this.intervalRef);
+
+
+        }
+
         const kakuro = new Kakuro(this.state.cells);
         const { invalidDownSums, invalidRightSums } = kakuro.validateSolution();
         if (invalidDownSums.length === 0 && invalidRightSums.length === 0) {
             // alert('The solution is valid');
             console.log('The solution is valid');
-            toast.success('The solution is valid');
+            toast.success('The solution is valid and you took ' + this.state.elapsedTime + ' seconds to solve it!');
         } else {
             // alert('The solution is invalid');
             console.log('The solution is invalid');
-            toast.error('The solution is invalid');
+            toast.error('The solution is invalid and you took ' + this.state.elapsedTime + ' seconds to try to solve it!');
         }
+
+
     }
 
     render() {
         return (
             <div class="kakuro">
                 <div class="kakuro-controller">
+                    {this.state.elapsedTime}
                     <GridComponent
                         cells={this.state.cells}
                         setFocusCell={this.setFocusCell.bind(this)}
